@@ -78,22 +78,22 @@ export const ContributionHeatmap: React.FC<Props> = ({ calendar }) => {
       </div>
       {/* Heatmap with aligned weekday + month labels */}
       <div className="overflow-x-auto overflow-y-visible pb-2">
-        <div className="inline-grid gap-y-2" style={{ gridTemplateColumns: '32px auto' }}>
+        <div className="inline-grid gap-y-2" style={{ gridTemplateColumns: '40px auto' }}>
           {/* Weekday labels */}
-          <div className="grid grid-rows-7 gap-[3px] text-[10px] text-slate-500 pt-4 select-none w-8">
+          <div className="grid grid-rows-7 gap-1 text-xs text-slate-500 pt-5 select-none w-10">
             <span className="row-start-2">Mon</span>
             <span className="row-start-4">Wed</span>
             <span className="row-start-6">Fri</span>
           </div>
           {/* Weeks */}
-          <div className="grid" style={{ gridTemplateColumns: `repeat(${weeks.length}, 12px)`, columnGap: '3px' }}>
+          <div className="grid" style={{ gridTemplateColumns: `repeat(${weeks.length}, 16px)`, columnGap: '4px' }}>
             {weeks.map((week, wIdx) => (
-              <div key={week.firstDay + wIdx} className="grid grid-rows-7 gap-[3px]">
+              <div key={week.firstDay + wIdx} className="grid grid-rows-7 gap-1">
                 {Array.from({ length: 7 }).map((_, dayIdx) => {
                   const day: ContributionDay | undefined = week.contributionDays.find((d: ContributionDay) => d.weekday === dayIdx);
-                  if (!day) return <div key={dayIdx} className="w-3 h-3" />;
+                  if (!day) return <div key={dayIdx} className="w-4 h-4" />;
                   const level = getLevel(day.contributionCount, maxDay);
-                  const className = `w-3 h-3 rounded-sm group ${LEVEL_CLASSES[level]} transition-colors duration-200`;
+                  const className = `w-4 h-4 rounded-sm group ${LEVEL_CLASSES[level]} transition-colors duration-200`;
                   return (
                     <div key={day.date} className={className} title={`${day.contributionCount} contribution${day.contributionCount === 1 ? '' : 's'} on ${new Date(day.date).toLocaleDateString(undefined, { month: 'short', day: 'numeric', year: 'numeric' })}`}>
                     </div>
@@ -103,12 +103,12 @@ export const ContributionHeatmap: React.FC<Props> = ({ calendar }) => {
             ))}
           </div>
           {/* Spacer */}
-          <div className="w-8" />
+          <div className="w-10" />
           {/* Month labels aligned under weeks */}
-          <div className="grid text-[10px] text-slate-500 select-none" style={{ gridTemplateColumns: `repeat(${weeks.length}, 12px)`, columnGap: '3px' }}>
+          <div className="grid text-xs text-slate-500 select-none" style={{ gridTemplateColumns: `repeat(${weeks.length}, 16px)`, columnGap: '4px' }}>
             {weeks.map((_, idx) => {
               const month = monthPositions.find(m => m.weekIndex === idx);
-              return <div key={idx} className="h-4">{month ? month.label : ''}</div>;
+              return <div key={idx} className="h-5">{month ? month.label : ''}</div>;
             })}
           </div>
         </div>

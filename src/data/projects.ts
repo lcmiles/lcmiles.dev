@@ -59,7 +59,7 @@ export const projects: Project[] = [
     links: [
       { label: 'GitHub', href: 'https://github.com/lcmiles/cs-476-final-project', external: true },
       { label: 'Trailer', href: 'https://youtu.be/kRr7yWkFJJY', external: true },
-      { label: 'Download', href: 'http://logansserver1511.duckdns.org/GearShift/', external: true }
+      { label: 'Download', href: 'https://lcmiles.dev/files/GearShift%20-%20Windows%20v2.zip', external: true }
     ],
     featured: true,
     year: 2024
@@ -73,7 +73,7 @@ export const projects: Project[] = [
     skills: ['Python', 'Docker', 'Linux', 'Git', 'JavaScript'],
     links: [
       { label: 'GitHub', href: 'https://github.com/lcmiles/ollama-chat', external: true },
-      { label: 'Live Demo', href: 'http://logansserver1511.duckdns.org:8090', external: true }
+      { label: 'Live Demo', href: 'http://lcmiles.dev:8090', external: true }
     ],
     year: 2025
   },
@@ -82,11 +82,11 @@ export const projects: Project[] = [
     title: 'Developer Portfolio',
     description: 'A modern, dynamic portfolio built with Next.js 15, TypeScript, and Tailwind CSS. Features animated starfield background with shooting stars, real-time GitHub metrics integration, contact form with Resend API, and fully responsive design with dark theme. Deployed with Docker and includes CI/CD pipeline.',
     image: '/projects/project-5.png',
-    tags: ['Next.js', 'TypeScript', 'Tailwind CSS', 'Framer Motion', 'Docker', 'Resend API'],
+    tags: ['Next.js', 'TypeScript', 'Tailwind CSS', 'Framer Motion', 'Docker'],
     skills: ['Next.js', 'React', 'TypeScript', 'Tailwind CSS', 'JavaScript', 'Docker', 'Git', 'Linux', 'CI/CD', 'Node.js', 'HTML/CSS'],
     links: [
       { label: 'GitHub', href: 'https://github.com/lcmiles/lcmiles.dev', external: true },
-      { label: 'Live Site', href: 'https://lcmiles.dev', external: true }
+      
     ],
     featured: true,
     year: 2025

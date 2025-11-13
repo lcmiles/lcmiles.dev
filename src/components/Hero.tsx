@@ -68,7 +68,7 @@ export default function Hero() {
             animate={{ opacity: 1 }}
             transition={{ duration: 0.8, delay: 0.6 }}
           >
-            Building effecient and secure cloud-native, full-stack systems.
+            Building effecient and secure full-stack systems.
           </motion.p>
 
           {/* CTA Buttons */}

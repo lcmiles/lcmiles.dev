@@ -14,6 +14,8 @@ export interface AboutData {
   currentPosition: QuickInfo;
   education: QuickInfo;
   paragraphs: string[];
+  resumeUrl?: string; // URL to resume/CV file
+  transcriptUrl?: string; // URL to academic transcript
 }
 
 export const aboutData: AboutData = {
@@ -36,4 +38,6 @@ export const aboutData: AboutData = {
     "Outside of work, I enjoy building personal projects that deepen my technical skills. I manage a personal Ubuntu server for home automation and other self-hosted applications. I also enjoy building custom gaming rigs, optimizing system performance, and diving into the latest trends in computer hardware. I'm passionate about performance optimization and system automation—whether in the cloud or on my own hardware.",
     "Feel free to connect with me if you share similar interests or want to collaborate on exciting projects—I'm always eager to learn and grow with others in the tech community!",
   ],
+  resumeUrl: 'https://lcmiles.dev/files/Resume%20-%202025.pdf',
+  transcriptUrl: 'https://lcmiles.dev/files/Unofficial%20Academic%20Transcript%202025.pdf',
 };

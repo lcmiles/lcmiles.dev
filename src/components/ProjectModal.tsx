@@ -1,7 +1,7 @@
 'use client';
 
 import { motion, AnimatePresence } from 'framer-motion';
-import { useEffect, useState } from 'react';
+import { useEffect } from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
 import { Project } from '@/data/projects';
@@ -12,68 +12,8 @@ interface ProjectModalProps {
   onClose: () => void;
 }
 
-interface GitHubStats {
-  stars: number;
-  forks: number;
-  watchers: number;
-  lastUpdated: string;
-  language: string;
-  openIssues: number;
-}
-
 export default function ProjectModal({ project, isOpen, onClose }: ProjectModalProps) {
-  const [githubStats, setGithubStats] = useState<GitHubStats | null>(null);
-  const [loadingStats, setLoadingStats] = useState(false);
-
-  useEffect(() => {
-    if (!project || !isOpen) {
-      setGithubStats(null);
-      return;
-    }
-
-    const githubLink = project.links.find(link => 
-      link.href.includes('github.com') && link.href.includes(project.id)
-    );
-
-    if (githubLink) {
-      const match = githubLink.href.match(/github\.com\/([^/]+)\/([^/]+)/);
-      if (match) {
-        const [, owner, repo] = match;
-        fetchGitHubStats(owner, repo);
-      }
-    }
-  }, [project, isOpen]);
-
-  const fetchGitHubStats = async (owner: string, repo: string) => {
-    setLoadingStats(true);
-    try {
-      const response = await fetch(`https://api.github.com/repos/${owner}/${repo}`, {
-        headers: process.env.NEXT_PUBLIC_GITHUB_TOKEN
-          ? { Authorization: `token ${process.env.NEXT_PUBLIC_GITHUB_TOKEN}` }
-          : {},
-      });
-
-      if (response.ok) {
-        const data = await response.json();
-        setGithubStats({
-          stars: data.stargazers_count,
-          forks: data.forks_count,
-          watchers: data.watchers_count,
-          lastUpdated: new Date(data.updated_at).toLocaleDateString('en-US', {
-            year: 'numeric',
-            month: 'short',
-            day: 'numeric',
-          }),
-          language: data.language || 'N/A',
-          openIssues: data.open_issues_count,
-        });
-      }
-    } catch (error) {
-      console.error('Failed to fetch GitHub stats:', error);
-    } finally {
-      setLoadingStats(false);
-    }
-  };
+  // No repository stats are fetched or displayed to keep the modal focused on the project content.
 
   useEffect(() => {
     if (isOpen) {
@@ -160,46 +100,7 @@ export default function ProjectModal({ project, isOpen, onClose }: ProjectModalP
                 </p>
               </div>
 
-              {/* GitHub Stats */}
-              {githubStats && (
-                <div className="mb-6 p-4 bg-slate-800/50 rounded-lg border border-slate-700">
-                  <h3 className="text-sm font-semibold text-slate-300 mb-3 uppercase tracking-wider">
-                    Repository Stats
-                  </h3>
-                  <div className="grid grid-cols-2 md:grid-cols-3 gap-4">
-                    <div>
-                      <div className="text-2xl font-bold text-cyan-400">⭐ {githubStats.stars}</div>
-                      <div className="text-xs text-slate-400">Stars</div>
-                    </div>
-                    <div>
-                      <div className="text-2xl font-bold text-cyan-400">🍴 {githubStats.forks}</div>
-                      <div className="text-xs text-slate-400">Forks</div>
-                    </div>
-                    <div>
-                      <div className="text-2xl font-bold text-cyan-400">👁️ {githubStats.watchers}</div>
-                      <div className="text-xs text-slate-400">Watchers</div>
-                    </div>
-                    <div>
-                      <div className="text-sm font-medium text-slate-300">{githubStats.language}</div>
-                      <div className="text-xs text-slate-400">Primary Language</div>
-                    </div>
-                    <div>
-                      <div className="text-sm font-medium text-slate-300">{githubStats.lastUpdated}</div>
-                      <div className="text-xs text-slate-400">Last Updated</div>
-                    </div>
-                    <div>
-                      <div className="text-sm font-medium text-slate-300">{githubStats.openIssues}</div>
-                      <div className="text-xs text-slate-400">Open Issues</div>
-                    </div>
-                  </div>
-                </div>
-              )}
-
-              {loadingStats && (
-                <div className="mb-6 p-4 bg-slate-800/50 rounded-lg border border-slate-700">
-                  <p className="text-slate-400 text-sm">Loading repository stats...</p>
-                </div>
-              )}
+              {/* Repository stats removed per request */}
 
               {/* Tech Stack */}
               <div className="mb-6">
