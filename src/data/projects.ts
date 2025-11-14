@@ -73,7 +73,7 @@ export const projects: Project[] = [
     skills: ['Python', 'Docker', 'Linux', 'Git', 'JavaScript'],
     links: [
       { label: 'GitHub', href: 'https://github.com/lcmiles/ollama-chat', external: true },
-      { label: 'Live Demo', href: 'http://lcmiles.dev:8090', external: true }
+      { label: 'Live Demo', href: 'http://lcmiles.dev/chat', external: true }
     ],
     year: 2025
   },
