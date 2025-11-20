@@ -166,7 +166,7 @@ export default function ContactPage() {
                         alt={link.label + ' icon'}
                         width={32}
                         height={32}
-                        className="opacity-80 group-hover:opacity-100 transition-opacity"
+                        className={`opacity-80 group-hover:opacity-100 transition-opacity ${link.id === 'x' || link.id === 'instagram' ? 'invert' : ''}`}
                       />
                       <span className="text-slate-300 group-hover:text-cyan-400 transition-colors">
                         {link.label}

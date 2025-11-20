@@ -42,6 +42,22 @@ export const contactData: ContactData = {
       icon: '/icons/email.svg',
       external: true,
       ariaLabel: 'Send an email to Logan Miles'
+    },
+    {
+      id: 'x',
+      label: 'X',
+      href: 'https://x.com/lmiles1511',
+      icon: '/icons/x-logo.svg',
+      external: true,
+      ariaLabel: 'Visit Logan Miles on X'
+    },
+    {
+      id: 'instagram',
+      label: 'Instagram',
+      href: 'https://instagram.com/lmiles1511',
+      icon: '/icons/instagram.svg',
+      external: true,
+      ariaLabel: 'Visit Logan Miles on Instagram'
     }
   ]
 };

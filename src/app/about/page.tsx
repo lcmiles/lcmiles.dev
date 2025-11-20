@@ -4,6 +4,7 @@ import { Navigation } from '@/components/Navigation';
 import { motion } from 'framer-motion';
 import Image from 'next/image';
 import { aboutData } from '@/data/about';
+import { contactData } from '@/data/contact';
 
 export default function AboutPage() {
   return (
@@ -98,6 +99,32 @@ export default function AboutPage() {
                     </div>
                   </a>
                 )}
+              </div>
+
+              {/* Social Media Links */}
+              <div className="space-y-3">
+                <h3 className="text-sm font-bold text-cyan-400 uppercase tracking-wider text-center">My Socials</h3>
+                <div className="flex gap-3 justify-center">
+                  {contactData.links
+                    .filter(link => link.id === 'x' || link.id === 'instagram')
+                    .map((link) => (
+                      <a
+                        key={link.id}
+                        href={link.href}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        aria-label={link.ariaLabel}
+                        className="flex-1 bg-slate-900/50 hover:bg-slate-800 border border-slate-800 hover:border-cyan-500/50 rounded-xl p-4 transition-all duration-300 flex items-center justify-center group"
+                      >
+                        <img 
+                          src={link.icon} 
+                          alt={link.label}
+                          className="w-6 h-6 opacity-70 group-hover:opacity-100 transition-opacity duration-300 invert"
+                        />
+                      </a>
+                    ))
+                  }
+                </div>
               </div>
             </motion.div>
 
