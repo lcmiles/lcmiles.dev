@@ -24,7 +24,7 @@ export default function Hero() {
   }, []);
 
   return (
-    <section className="relative h-screen flex items-center justify-center px-4 overflow-hidden -mt-20">
+    <section className="relative h-screen flex items-center justify-center px-4 overflow-hidden mt-0 sm:-mt-20">
       {/* Starfield background */}
       <Starfield className="fixed inset-0 z-0 pointer-events-none" density={0.18} twinkleSpeed={1.1} driftSpeed={5} />
 

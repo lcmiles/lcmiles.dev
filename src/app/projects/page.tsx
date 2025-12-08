@@ -3,13 +3,27 @@
 import { Navigation } from '@/components/Navigation';
 import { motion } from 'framer-motion';
 import Image from 'next/image';
+import Link from 'next/link';
 import { projects, Project } from '@/data/projects';
-import { useState } from 'react';
+import { useState, useEffect, Suspense } from 'react';
 import ProjectModal from '@/components/ProjectModal';
+import { useSearchParams } from 'next/navigation';
 
-export default function ProjectsPage() {
+function ProjectsContent() {
   const [selectedProject, setSelectedProject] = useState<Project | null>(null);
   const [isModalOpen, setIsModalOpen] = useState(false);
+  const searchParams = useSearchParams();
+
+  useEffect(() => {
+    const projectId = searchParams.get('project');
+    if (projectId) {
+      const project = projects.find(p => p.id === projectId);
+      if (project) {
+        setSelectedProject(project);
+        setIsModalOpen(true);
+      }
+    }
+  }, [searchParams]);
 
   const handleProjectClick = (project: Project) => {
     setSelectedProject(project);
@@ -20,11 +34,11 @@ export default function ProjectsPage() {
     setIsModalOpen(false);
     setTimeout(() => setSelectedProject(null), 300);
   };
-  return (
-    <main className="min-h-screen bg-gradient-to-br from-slate-950 via-slate-900 to-slate-950">
-      <Navigation />
-      
-      <div className="pt-20 pb-16 px-4 sm:px-6 lg:px-8">
+
+    return (
+      <>
+        <Navigation />
+        <div className="pt-20 pb-16 px-4 sm:px-6 lg:px-8">
         <div className="max-w-7xl mx-auto">
           {/* Header */}
           <motion.div
@@ -79,12 +93,14 @@ export default function ProjectsPage() {
                   {/* Tech Stack */}
                   <div className="flex flex-wrap gap-2 mb-4">
                     {project.tags.map((tag: string) => (
-                      <span
+                      <Link
                         key={tag}
-                        className="px-3 py-1 text-xs font-medium bg-slate-800 text-cyan-400 rounded-full"
+                        href={`/skills?skill=${encodeURIComponent(tag)}`}
+                        onClick={(e) => e.stopPropagation()}
+                        className="px-3 py-1 text-xs font-medium bg-slate-800 text-cyan-400 rounded-full hover:bg-slate-700 hover:text-cyan-300 transition-colors"
                       >
                         {tag}
-                      </span>
+                      </Link>
                     ))}
                   </div>
 
@@ -105,6 +121,20 @@ export default function ProjectsPage() {
         isOpen={isModalOpen}
         onClose={closeModal}
       />
-    </main>
+      </>
   );
 }
+
+  export default function ProjectsPage() {
+    return (
+      <main className="min-h-screen bg-gradient-to-br from-slate-950 via-slate-900 to-slate-950">
+        <Suspense fallback={
+          <div className="min-h-screen flex items-center justify-center">
+            <div className="inline-block animate-spin rounded-full h-12 w-12 border-t-2 border-b-2 border-cyan-500"></div>
+          </div>
+        }>
+          <ProjectsContent />
+        </Suspense>
+      </main>
+    );
+  }

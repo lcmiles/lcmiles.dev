@@ -40,8 +40,8 @@ export function SkillDetail({ skill, projects, onClose }: SkillDetailProps) {
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         exit={{ opacity: 0 }}
-        className="fixed inset-0 z-50 flex items-center justify-center p-4"
-        style={{ pointerEvents: 'none' }}
+        className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/70 backdrop-blur"
+        onClick={onClose}
       >
         <motion.div
           initial={{ opacity: 0, scale: 0.9, y: 20 }}
@@ -49,7 +49,6 @@ export function SkillDetail({ skill, projects, onClose }: SkillDetailProps) {
           exit={{ opacity: 0, scale: 0.9, y: 20 }}
           transition={{ duration: 0.3 }}
           className="bg-slate-900 border border-slate-700 rounded-xl max-w-2xl w-full max-h-[90vh] overflow-y-auto shadow-2xl"
-          style={{ pointerEvents: 'auto' }}
           onClick={(e) => e.stopPropagation()}
         >
           <div className="sticky top-0 bg-slate-900 border-b border-slate-700 px-4 sm:px-6 py-4 flex justify-between items-start z-10">
@@ -79,7 +78,6 @@ export function SkillDetail({ skill, projects, onClose }: SkillDetailProps) {
           <div className="p-4 sm:p-6 space-y-6">
             <div>
               <h3 className="text-base sm:text-lg font-semibold text-slate-200 mb-3 flex items-center gap-2">
-                <span className="text-2xl">📊</span>
                 Proficiency Level
               </h3>
               <div className="bg-slate-800/50 rounded-lg p-4">
@@ -106,14 +104,13 @@ export function SkillDetail({ skill, projects, onClose }: SkillDetailProps) {
             {relatedProjects.length > 0 && (
               <div>
                 <h3 className="text-lg font-semibold text-slate-200 mb-3 flex items-center gap-2">
-                  <span className="text-2xl">💼</span>
                   Projects Using This Skill
                 </h3>
                 <div className="space-y-3">
                   {relatedProjects.map(project => (
                     <Link
                       key={project.id}
-                      href={`/projects#${project.id}`}
+                      href={`/projects?project=${project.id}`}
                       className="block p-4 bg-slate-800/50 hover:bg-slate-800 border border-slate-700 hover:border-cyan-500/50 rounded-lg transition-all group"
                     >
                       <div className="flex items-start gap-3">

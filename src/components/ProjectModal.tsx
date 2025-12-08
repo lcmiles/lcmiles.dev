@@ -109,12 +109,13 @@ export default function ProjectModal({ project, isOpen, onClose }: ProjectModalP
                 </h3>
                 <div className="flex flex-wrap gap-2">
                   {project.tags.map((tag: string) => (
-                    <span
+                    <Link
                       key={tag}
-                      className="px-4 py-2 text-sm font-medium bg-slate-800 text-cyan-400 rounded-lg border border-slate-700"
+                      href={`/skills?skill=${encodeURIComponent(tag)}`}
+                      className="px-4 py-2 text-sm font-medium bg-slate-800 text-cyan-400 rounded-lg border border-slate-700 hover:bg-slate-700 hover:text-cyan-300 transition-colors"
                     >
                       {tag}
-                    </span>
+                    </Link>
                   ))}
                 </div>
               </div>

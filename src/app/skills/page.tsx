@@ -2,19 +2,48 @@
 
 import { Navigation } from '@/components/Navigation';
 import { motion } from 'framer-motion';
-import { useState } from 'react';
+import { useEffect, useState, Suspense } from 'react';
 import { skills as skillsData, skillCategories, Skill } from '@/data/skills';
 import { projects } from '@/data/projects';
 import { SkillsLegend } from '@/components/SkillsLegend';
 // Growth chart removed by request
 import { SkillDetail } from '@/components/SkillDetail';
+import { useSearchParams } from 'next/navigation';
 
-export default function SkillsPage() {
+function SkillsContent() {
   const [selectedCategory, setSelectedCategory] = useState<'All' | Skill['category']>('All');
   const [legendOpen, setLegendOpen] = useState(false);
   const [selectedSkill, setSelectedSkill] = useState<Skill | null>(null);
   // Single view: grid only (chart removed)
   const [viewMode, setViewMode] = useState<'grid'>('grid');
+  const searchParams = useSearchParams();
+
+  const normalize = (value: string) => value.trim().toLowerCase().replace(/[^a-z0-9]+/g, '-');
+
+  const findSkillByQuery = (query: string): Skill | undefined => {
+    const target = normalize(query);
+    // 1) exact normalized name match
+    let match = skillsData.find(skill => normalize(skill.name) === target);
+    if (match) return match;
+    // 2) query contains skill name (for tags like "Google Cloud" vs "Google Cloud Run")
+    match = skillsData.find(skill => target.includes(normalize(skill.name)));
+    if (match) return match;
+    // 3) skill name contains query (for tags like "CI/CD" vs "CI/CD Pipelines")
+    match = skillsData.find(skill => normalize(skill.name).includes(target));
+    if (match) return match;
+    return undefined;
+  };
+
+  useEffect(() => {
+    const skillParam = searchParams.get('skill');
+    if (skillParam) {
+      const match = findSkillByQuery(skillParam);
+      if (match) {
+        setSelectedCategory('All');
+        setSelectedSkill(match);
+      }
+    }
+  }, [searchParams]);
 
   const filteredSkills = selectedCategory === 'All'
     ? skillsData
@@ -30,7 +59,7 @@ export default function SkillsPage() {
   };
 
   return (
-    <main className="min-h-screen bg-gradient-to-br from-slate-950 via-slate-900 to-slate-950">
+    <>
       <Navigation />
       
       <div className="pt-24 pb-16 px-4 sm:px-6 lg:px-8">
@@ -146,6 +175,20 @@ export default function SkillsPage() {
         projects={projects}
         onClose={() => setSelectedSkill(null)} 
       />
+    </>
+  );
+}
+
+export default function SkillsPage() {
+  return (
+    <main className="min-h-screen bg-gradient-to-br from-slate-950 via-slate-900 to-slate-950">
+      <Suspense fallback={
+        <div className="min-h-screen flex items-center justify-center">
+          <div className="inline-block animate-spin rounded-full h-12 w-12 border-t-2 border-b-2 border-cyan-500"></div>
+        </div>
+      }>
+        <SkillsContent />
+      </Suspense>
     </main>
   );
 }
