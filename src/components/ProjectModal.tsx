@@ -86,6 +86,14 @@ export default function ProjectModal({ project, isOpen, onClose }: ProjectModalP
                 <h2 className="text-4xl font-bold text-white mb-2">
                   {project.title}
                 </h2>
+                
+                {/* Tags - greyed out text below title */}
+                {project.tags && project.tags.length > 0 && (
+                  <p className="text-sm text-slate-500 mb-4 leading-relaxed">
+                    {project.tags.join(' | ')}
+                  </p>
+                )}
+                
                 {project.year && (
                   <p className="text-slate-400 text-sm">
                     {project.year}
@@ -102,23 +110,25 @@ export default function ProjectModal({ project, isOpen, onClose }: ProjectModalP
 
               {/* Repository stats removed per request */}
 
-              {/* Tech Stack */}
-              <div className="mb-6">
-                <h3 className="text-sm font-semibold text-slate-300 mb-3 uppercase tracking-wider">
-                  Technologies
-                </h3>
-                <div className="flex flex-wrap gap-2">
-                  {project.tags.map((tag: string) => (
-                    <Link
-                      key={tag}
-                      href={`/skills?skill=${encodeURIComponent(tag)}`}
-                      className="px-4 py-2 text-sm font-medium bg-slate-800 text-cyan-400 rounded-lg border border-slate-700 hover:bg-slate-700 hover:text-cyan-300 transition-colors"
-                    >
-                      {tag}
-                    </Link>
-                  ))}
+              {/* Skills - clickable buttons */}
+              {project.skills && project.skills.length > 0 && (
+                <div className="mb-6">
+                  <h3 className="text-sm font-semibold text-slate-300 mb-3 uppercase tracking-wider">
+                    Skills Used
+                  </h3>
+                  <div className="flex flex-wrap gap-2">
+                    {project.skills.map((skill: string) => (
+                      <Link
+                        key={skill}
+                        href={`/skills?skill=${encodeURIComponent(skill)}`}
+                        className="px-4 py-2 text-sm font-medium bg-slate-800 text-cyan-400 rounded-lg border border-slate-700 hover:bg-slate-700 hover:text-cyan-300 transition-colors cursor-pointer"
+                      >
+                        {skill}
+                      </Link>
+                    ))}
+                  </div>
                 </div>
-              </div>
+              )}
 
               {/* Links */}
               <div className="flex flex-wrap gap-4">

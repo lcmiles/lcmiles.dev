@@ -86,23 +86,33 @@ function ProjectsContent() {
                   <h3 className="text-2xl font-bold text-slate-100 mb-2 group-hover:text-cyan-400 transition-colors">
                     {project.title}
                   </h3>
+                  
+                  {/* Tags - greyed out text */}
+                  {project.tags && project.tags.length > 0 && (
+                    <p className="text-xs text-slate-500 mb-4 leading-relaxed">
+                      {project.tags.join(' | ')}
+                    </p>
+                  )}
+                  
                   <p className="text-slate-400 mb-4 line-clamp-3">
                     {project.description}
                   </p>
 
-                  {/* Tech Stack */}
-                  <div className="flex flex-wrap gap-2 mb-4">
-                    {project.tags.map((tag: string) => (
-                      <Link
-                        key={tag}
-                        href={`/skills?skill=${encodeURIComponent(tag)}`}
-                        onClick={(e) => e.stopPropagation()}
-                        className="px-3 py-1 text-xs font-medium bg-slate-800 text-cyan-400 rounded-full hover:bg-slate-700 hover:text-cyan-300 transition-colors"
-                      >
-                        {tag}
-                      </Link>
-                    ))}
-                  </div>
+                  {/* Skills - clickable buttons */}
+                  {project.skills && project.skills.length > 0 && (
+                    <div className="flex flex-wrap gap-2 mb-4">
+                      {project.skills.map((skill: string) => (
+                        <Link
+                          key={skill}
+                          href={`/skills?skill=${encodeURIComponent(skill)}`}
+                          onClick={(e) => e.stopPropagation()}
+                          className="px-3 py-1 text-xs font-medium bg-slate-800 text-cyan-400 rounded-full hover:bg-slate-700 hover:text-cyan-300 transition-colors cursor-pointer"
+                        >
+                          {skill}
+                        </Link>
+                      ))}
+                    </div>
+                  )}
 
                   {/* View Details Link */}
                   <div className="text-sm text-cyan-400 font-medium hover:text-cyan-300 transition-colors">

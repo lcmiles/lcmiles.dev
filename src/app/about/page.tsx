@@ -72,8 +72,7 @@ export default function AboutPage() {
                 {aboutData.resumeUrl && (
                   <a
                     href={aboutData.resumeUrl}
-                    target="_blank"
-                    rel="noopener noreferrer"
+                    download
                     className="block w-full bg-gradient-to-r from-cyan-500 to-blue-500 hover:from-cyan-400 hover:to-blue-400 text-white font-semibold py-3 px-6 rounded-xl transition-all duration-300 text-center shadow-lg shadow-cyan-500/25 hover:shadow-cyan-500/40 hover:scale-[1.02]"
                   >
                     <div className="flex items-center justify-center gap-2">
@@ -87,8 +86,7 @@ export default function AboutPage() {
                 {aboutData.transcriptUrl && (
                   <a
                     href={aboutData.transcriptUrl}
-                    target="_blank"
-                    rel="noopener noreferrer"
+                    download
                     className="block w-full bg-slate-800 hover:bg-slate-700 text-slate-100 font-semibold py-3 px-6 rounded-xl transition-all duration-300 text-center border border-slate-700 hover:border-slate-600"
                   >
                     <div className="flex items-center justify-center gap-2">

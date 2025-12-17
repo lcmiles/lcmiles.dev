@@ -4,9 +4,12 @@ services:
       context: .
       dockerfile: Dockerfile
     ports:
-      - "127.0.0.1:3003:3000"
+      - "3003:3000"
     env_file:
       - .env.local
     environment:
       - NODE_ENV=production
+    volumes:
+      - /home/lcmiles/public:/home/lcmiles/public:ro
     restart: unless-stopped
+

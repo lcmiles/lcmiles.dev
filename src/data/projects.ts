@@ -23,10 +23,10 @@ export const projects: Project[] = [
         id: 'drone-automation',
         title: 'Agricultural Drone Automation System',
         subtitle: 'CS-420 Software Engineering',
-        description: 'An automated drone control system for precision agriculture. Implements path planning algorithms, real-time telemetry, and crop monitoring capabilities. Developed using software engineering best practices including requirements analysis, system design, and testing.',
+        description: 'A JavaFX dashboard for automating agricultural data collection with drones. Features animated flight visualization, simulated data collection for pests, livestock, crops, and soil moisture, and hierarchical item/container management with customizable flight plans.',
         image: '/projects/project-2.png',
-        tags: ['Python', 'JavaFX', 'OOP', 'Software Engineering'],
-        skills: ['Python', 'Git'],
+        tags: ['JavaFX', 'OOP', 'Software Engineering'],
+        skills: ['Java'],
         links: [
         { label: 'GitHub', href: 'https://github.com/lcmiles/CS-420-Final-Project', external: true }
         ],
@@ -37,10 +37,10 @@ export const projects: Project[] = [
     id: 'blazing-adoptions',
     title: 'Blazing Adoptions',
     subtitle: 'CS-499 Capstone',
-    description: 'A full-stack web application for pet adoption management. Built with React, Node.js, and MongoDB, deployed on Google Cloud Run with CI/CD pipeline. Features include real-time search, user authentication, and admin dashboard for managing adoption listings.',
+    description: 'Semester-long group project for CS-499 Capstone. The goal of this project was to develop a web application to streamline the pet adoption process and make it more user-friendly. Deployed on Google Cloud Run with GitOps. Features include real-time search, user authentication, and admin dashboard for managing adoption listings.',
     image: '/projects/project-1.png',
-    tags: ['Flask', 'HTML/CSS', 'SQL', 'Google Cloud', 'Docker', 'CI/CD'],
-    skills: ['Python', 'HTML/CSS', 'SQL', 'Docker', 'Git', 'CI/CD', 'React', 'JavaScript', 'Tailwind CSS'],
+    tags: ['Google Cloud Hosted', 'GitOps', 'User Authentication', 'Full-stack'],
+    skills: ['Python', 'HTML/CSS', 'SQL', 'Docker', 'CI/CD', 'Flask', 'JavaScript', 'Tailwind CSS', 'Google Cloud Run'],
     links: [
       { label: 'GitHub', href: 'https://github.com/lcmiles/CS-499-Capstone', external: true },
       { label: 'Live Demo', href: 'https://cs-499-capstone-380384151340.us-central1.run.app/', external: true }
@@ -52,14 +52,14 @@ export const projects: Project[] = [
     id: 'gearshift',
     title: 'GearShift',
     subtitle: 'CS-476 Game Development',
-    description: 'A 3D racing game built with Unreal Engine featuring custom vehicle physics, procedurally generated tracks, and multiplayer capabilities. Showcases advanced game development techniques including shader programming, particle systems, and networked gameplay.',
+    description: 'A 3D puzzle game built with Unreal Engine. GearShift is a factory-based puzzle game. You play as a robot in a broken down factory, and your task is to fix up any broken machinery or faulty equipment you find in order to progress to the next level.',
     image: '/projects/project-3.png',
-    tags: ['Unreal Engine', 'C++', 'Game Development', '3D Graphics'],
-    skills: ['Git', 'JavaScript'],
+    tags: ['Unreal Engine 5', 'Game Development', '3D Graphics'],
+    skills: ['C++'],
     links: [
       { label: 'GitHub', href: 'https://github.com/lcmiles/cs-476-final-project', external: true },
       { label: 'Trailer', href: 'https://youtu.be/kRr7yWkFJJY', external: true },
-      { label: 'Download', href: 'https://lcmiles.dev/files/GearShift%20-%20Windows%20v2.zip', external: true }
+      { label: 'Download', href: '/api/download/GearShift_Windows_v2.zip', external: false }
     ],
     featured: true,
     year: 2024
@@ -69,8 +69,8 @@ export const projects: Project[] = [
     title: 'Ollama Chat',
     description: 'A self-hosted AI chat interface powered by Ollama for running large language models locally. Features real-time streaming responses, conversation history, and support for multiple LLM models. Deployed on personal Ubuntu server infrastructure.',
     image: '/projects/project-4.png',
-    tags: ['AI', 'Python', 'Self-Hosted', 'LLM', 'Web Development', 'Full-Stack'],
-    skills: ['Python', 'Docker', 'Linux', 'Git', 'JavaScript'],
+    tags: ['AI', 'Self-Hosted', 'LLM', 'Web Development', 'Full-Stack'],
+    skills: ['Python', 'Docker'],
     links: [
       { label: 'GitHub', href: 'https://github.com/lcmiles/ollama-chat', external: true },
       { label: 'Live Demo', href: 'http://lcmiles.dev/chat', external: true }
@@ -80,10 +80,10 @@ export const projects: Project[] = [
   {
     id: 'portfolio-dev',
     title: 'Developer Portfolio',
-    description: 'A modern, dynamic portfolio built with Next.js 15, TypeScript, and Tailwind CSS. Features animated starfield background with shooting stars, real-time GitHub metrics integration, contact form with Resend API, and fully responsive design with dark theme. Deployed with Docker and includes CI/CD pipeline.',
+    description: 'A modern, dynamic portfolio built with Next.js 15, TypeScript, and Tailwind CSS. Features animated starfield background with shooting stars, real-time GitHub metrics integration, contact form with Resend API, and fully responsive design with dark theme. Deployed on personal Ubuntu server infrastructure.',
     image: '/projects/project-5.png',
-    tags: ['Next.js', 'TypeScript', 'Tailwind CSS', 'Framer Motion', 'Docker'],
-    skills: ['Next.js', 'React', 'TypeScript', 'Tailwind CSS', 'JavaScript', 'Docker', 'Git', 'Linux', 'CI/CD', 'Node.js', 'HTML/CSS'],
+    tags: ['Framer Motion', 'Web Development', 'Self-Hosted'],
+    skills: ['Next.js', 'React', 'TypeScript', 'Tailwind CSS', 'Docker', 'Node.js', 'HTML/CSS'],
     links: [
       { label: 'GitHub', href: 'https://github.com/lcmiles/lcmiles.dev', external: true },
       
